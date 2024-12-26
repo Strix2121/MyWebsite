@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج تسجيل البيانات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            direction: rtl;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-container label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h2>نموذج تسجيل بيانات المستخدم</h2>
+
+    <div class="form-container">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" placeholder="أدخل اسمك" required><br>
+
+        <label for="surname">الكنية:</label>
+        <input type="text" id="surname" placeholder="أدخل كنيتك" required><br>
+
+        <label for="number">الرقم:</label>
+        <input type="number" id="number" placeholder="أدخل رقمك" required><br>
+
+        <label for="birthdate">تاريخ الميلاد:</label>
+        <input type="date" id="birthdate" required><br>
+
+        <button id="saveButton">حفظ البيانات</button>
+    </div>
+
+    <div id="message"></div>
+
+    <script>
+        $(document).ready(function () {
+
+            var userInformation = [];
+
+            // عند الضغط على زر "حفظ البيانات"
+            $("#saveButton").click(function () {
+                const name = $("#name").val();
+                const surname = $("#surname").val();
+                const number = $("#number").val();
+                const birthdate = $("#birthdate").val();
+
+                if (name === "" || surname === "" || number === "" || birthdate === "") {
+                    displayMessage("يرجى ملء جميع الحقول", "error");
+                    return;
+                }
+
+                userInformation.push({ name, surname, number, birthdate });
+
+                // تخزين البيانات في localStorage
+                localStorage.setItem("userInformation", JSON.stringify(userInformation));
+
+                // عرض رسالة تأكيد
+                displayMessage("تم حفظ البيانات بنجاح!", "success");
+
+                // إعادة التوجيه إلى صفحة الجدول
+                window.location.href = "table.html";
+            });
+
+            // دالة لعرض الرسائل
+            function displayMessage(message, type) {
+                const messageDiv = $("#message");
+                if (type === "success") {
+                    messageDiv.html(`<p class="success-message">${message}</p>`);
+                } else {
+                    messageDiv.html(`<p class="error-message">${message}</p>`);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
