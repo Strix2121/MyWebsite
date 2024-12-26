@@ -76,8 +76,8 @@
         <label for="surname">الكنية:</label>
         <input type="text" id="surname" placeholder="أدخل كنيتك" required><br>
 
-        <label for="number">الرقم:</label>
-        <input type="number" id="number" placeholder="أدخل رقمك" required><br>
+        <label for="phone">رقم الهاتف:</label>
+        <input type="tel" id="phone" placeholder="أدخل رقم هاتفك" required><br>
 
         <label for="birthdate">تاريخ الميلاد:</label>
         <input type="date" id="birthdate" required><br>
@@ -96,15 +96,15 @@
             $("#saveButton").click(function () {
                 const name = $("#name").val();
                 const surname = $("#surname").val();
-                const number = $("#number").val();
+                const phone = $("#phone").val();
                 const birthdate = $("#birthdate").val();
 
-                if (name === "" || surname === "" || number === "" || birthdate === "") {
+                if (name === "" || surname === "" || phone === "" || birthdate === "") {
                     displayMessage("يرجى ملء جميع الحقول", "error");
                     return;
                 }
 
-                userInformation.push({ name, surname, number, birthdate });
+                userInformation.push({ name, surname, phone, birthdate });
 
                 // تخزين البيانات في localStorage
                 localStorage.setItem("userInformation", JSON.stringify(userInformation));
