@@ -67,12 +67,12 @@
             if (userInformation && userInformation.length > 0) {
                 const table = document.getElementById("userTable");
                 const header = document.createElement("tr");
-                header.innerHTML = `<th>البريد الإلكتروني</th><th>معرف المستخدم</th><th>كلمة المرور</th><th>تاريخ الميلاد</th>`;
+                header.innerHTML = `<th>الاسم</th><th>الكنية</th><th>رقم الهاتف</th><th>تاريخ الميلاد</th>`;
                 table.appendChild(header);
 
                 userInformation.forEach(function (user) {
                     const row = document.createElement("tr");
-                    row.innerHTML = `<td>${user.email}</td><td>${user.userId}</td><td>*****</td><td>${user.birthdate}</td>`;
+                    row.innerHTML = `<td>${user.name}</td><td>${user.surname}</td><td>${user.phone}</td><td>${user.birthdate}</td>`;
                     table.appendChild(row);
                 });
             } else {
